@@ -749,6 +749,65 @@ def zwaveEvent(physicalgraph.zwave.commands.multichannelv3.MultiChannelCmdEncap 
 	def resultEvents = []
     def now = new Date().format('MM/dd/yyyy h:mm a',location.timeZone)
    
+   // case definitions
+   // https://www.cd-jackson.com/index.php/zwave/zwave-device-database/zwave-device-list/devicesummary/364
+   // product documentation
+   // http://vendomotica.com/imgcsv/Qubino_Weather-Station-PLUS-extended-manual_eng_2.2_ZMNHZD1.pdf
+   // manual
+   // https://www.cd-jackson.com/zwave_device_uploads/364/qubino-ZMNHZD1-V1-1.pdf
+   
+   //On each End point we can get battery level from corresponding sensor. On the Root device is a battery level from the sensor with the lowest battery level.
+
+/*
+Z-Wave Device Class:
+
+ZWAVEPLUS_INFO_REPORT_ROLE_TYPE_SLAVE_ALWAYS_0N
+GENERIC_TYPE_SENSOR_MULTILEVEL
+SPECIFIC_TYPE_ROUTING_SENSOR_MULTILEVEL
+Z-Wave Supported Command Classes:
+COMMAND_CLASS_ZWAVEPLUS_INFO_V2,
+COMMAND_CLASS_DEVICE_RESET_LOCALLY_V1
+COMMAND_CLASS_MANUFACTURER_SPECIFIC_V2
+COMMAND_CLASS_POWERLEVEL_V1
+COMMAND_CLASS_SECURITY
+COMMAND_CLASS_FIRMWARE_UPDATE_MD_V2
+
+Z-Wave Securely Supported Command Classes:
+
+COMMAND_CLASS_VERSION_V2
+COMMAND_CLASS_SENSOR_MULTILEVEL_V7
+COMMAND_CLASS_MULTI_CHANNEL_V4
+COMMAND_CLASS_ASSOCIATION_V2
+COMMAND_CLASS_MULTI_CHANNEL_ASSOCIATION_V3
+COMMAND_CLASS_ASSOCIATION_GRP_INFO_V2
+COMMAND_CLASS_CONFIGURATION
+COMMAND_CLASS_BATTERY
+COMMAND_CLASS_MARK
+COMMAND_CLASS_BASIC
+
+Endpoint 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 Device Class:
+
+ZWAVEPLUS_INFO_REPORT_ROLE_TYPE_SLAVE_ALWAYS_0N
+GENERIC_TYPE_SENSOR_MULTILEVEL
+SPECIFIC_TYPE_ROUTING_SENSOR_MULTILEVEL
+
+Command Classes:
+
+COMMAND_CLASS_ZWAVEPLUS_INFO_V2,
+
+Securely Supported Command Classes:
+
+COMMAND_CLASS_VERSION_V2
+COMMAND_CLASS_SENSOR_MULTILEVEL_V7
+COMMAND_CLASS_ASSOCIATION_V2
+COMMAND_CLASS_MULTI_CHANNEL_ASSOCIATION_V3
+COMMAND_CLASS_ASSOCIATION_GRP_INFO_V2
+COMMAND_CLASS_BATTERY
+COMMAND_CLASS_MARK
+COMMAND_CLASS_BASIC
+*/
+   
+   
 	switch (cmd.sourceEndPoint) {
 		default:
 				break;
