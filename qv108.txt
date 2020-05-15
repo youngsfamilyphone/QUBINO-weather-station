@@ -483,6 +483,14 @@ metadata {
 						   "0 = Random ID disabled,\n" +
 						   "1 = Random ID enabled,\n" +
 						   "Default value: 0."
+				input name: "param250", type: "enum", required: false,
+					options: ["0" : "0 = Unsecure Inclusion",
+							  "1" : "1 = Secure Inclusion"],
+					title: "250. Parameter No. 250 – Unsecure / Secure Inclusion " +
+						   "Available settings:\n" +
+						   "0 = – Unsecure Inclusion,\n" +
+						   "1 = Secure Inclusion,\n" +
+						   "Default value: 0."
                            
 
 				// lgk offsets 
@@ -712,6 +720,9 @@ def setConfigurationParams() {
 	}	
 	if(configSequence.size() > 0){
 		return delayBetween(configSequence, 500)
+	}
+    if(settings.param250 != null){
+		configSequence << zwave.configurationV1.configurationSet(parameterNumber: 250, size: 1, scaledConfigurationValue: settings.param250.toInteger()).format()
 	}
 }
 /*
